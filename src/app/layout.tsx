@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import { asset } from "@/lib/basePath";
 import "./globals.css";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    "https://the-wedding-letter-digimart.adyasoft-digital.chatgpt.site",
-  ),
   title: "Chedupathy & Shandhiya | 16 November 2026",
   description:
     "Join us for the wedding of C. Chedupathy & N. Shandhiya on 16 November 2026. Muhurtham: 6–7:30 AM, Thiruthani. Reception: 7 PM onwards, Anna Nagar, Chennai.",
@@ -14,14 +13,14 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/photos/chedupathy-shandhiya.jpg",
+        url: asset("/photos/chedupathy-shandhiya.jpg"),
         width: 853,
         height: 1280,
         alt: "C. Chedupathy and N. Shandhiya",
       },
     ],
   },
-  icons: { icon: "/icon.svg" },
+  icons: { icon: asset("/icon.svg") },
 };
 export const viewport: Viewport = {
   themeColor: "#722f40",

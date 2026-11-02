@@ -23,6 +23,7 @@ import {
 import { wedding as w } from "@/lib/content";
 import { copy } from "@/lib/translations";
 import { buildCalendar } from "@/lib/calendar";
+import { asset } from "@/lib/basePath";
 
 type Modal = "invitation" | "photo" | "card" | null;
 const validDate = (s: string) => s.length > 0 && Number.isFinite(Date.parse(s));
@@ -569,7 +570,7 @@ export default function WeddingExperience() {
           <div className="section-wrap day-story-layout reveal">
             <div className="day-story-image">
               <Image
-                src="/photos/a-quiet-moment.jpg"
+                src={asset("/photos/a-quiet-moment.jpg")}
                 alt="Chedupathy and Shandhiya, a quiet moment together"
                 fill
                 sizes="(max-width: 760px) 90vw, 45vw"

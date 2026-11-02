@@ -1,3 +1,5 @@
+import { asset } from "./basePath";
+
 // All personal content is transcribed from the supplied printed invitation.
 // Change this file to reuse the project for another couple.
 export const wedding = {
@@ -9,7 +11,7 @@ export const wedding = {
     qualification: "B.Com., MBA. · S.Rly.",
     parents: "Mr. N.D. Cholan & Mrs. C. Rajeswari",
     tamilParents: "திரு. N.D.சோழன் & திருமதி C.ராஜேஸ்வரி",
-    photo: "/photos/chedupathy.jpg",
+    photo: asset("/photos/chedupathy.jpg"),
   },
   bride: {
     name: "N. Shandhiya",
@@ -17,7 +19,7 @@ export const wedding = {
     qualification: "B.Com.",
     parents: "Mr. A. Nanthagopal & Mrs. N. Vasanthi",
     tamilParents: "திரு. A.நந்தகோபால் & திருமதி N.வசந்தி",
-    photo: "/photos/shandhiya.jpg",
+    photo: asset("/photos/shandhiya.jpg"),
   },
   monogram: "C & S",
   invocation: "Sri Munishwaran Thunai",
@@ -35,47 +37,47 @@ export const wedding = {
   },
   gallery: [
     {
-      src: "/photos/together.jpg",
+      src: asset("/photos/together.jpg"),
       alt: "Chedupathy and Shandhiya smiling together in traditional celebration attire",
     },
     {
-      src: "/photos/a-quiet-moment.jpg",
+      src: asset("/photos/a-quiet-moment.jpg"),
       alt: "A quiet moment between Chedupathy and Shandhiya",
     },
     {
-      src: "/photos/chedupathy-shandhiya.jpg",
+      src: asset("/photos/chedupathy-shandhiya.jpg"),
       alt: "Chedupathy and Shandhiya holding hands",
     },
     {
-      src: "/photos/shandhiya.jpg",
+      src: asset("/photos/shandhiya.jpg"),
       alt: "Portrait of N. Shandhiya in a red silk saree",
     },
     {
-      src: "/photos/chedupathy.jpg",
+      src: asset("/photos/chedupathy.jpg"),
       alt: "Portrait of C. Chedupathy in an ivory embroidered suit",
     },
   ],
   printedInvitations: [
     {
-      src: "/invitations/cover.jpg",
+      src: asset("/invitations/cover.jpg"),
       alt: "Original Tamil invitation cover",
       label: "Cover",
       tamilLabel: "முகப்பு",
     },
     {
-      src: "/invitations/english.jpg",
+      src: asset("/invitations/english.jpg"),
       alt: "Original English wedding invitation with ceremony and reception details",
       label: "English",
       tamilLabel: "ஆங்கிலம்",
     },
     {
-      src: "/invitations/tamil.jpg",
+      src: asset("/invitations/tamil.jpg"),
       alt: "Original Tamil wedding invitation with full family details",
       label: "Tamil",
       tamilLabel: "தமிழ்",
     },
   ],
-  heroImage: "/photos/chedupathy-shandhiya.jpg",
+  heroImage: asset("/photos/chedupathy-shandhiya.jpg"),
   // No music is copied from the old client. Add a licensed track under public/audio if wanted.
   music: "",
   contactPhone: "+919841434030",
