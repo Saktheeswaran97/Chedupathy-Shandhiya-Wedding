@@ -17,6 +17,7 @@ import {
   Pause,
   Phone,
   Play,
+  Volume2,
   VolumeX,
   X,
 } from "lucide-react";
@@ -126,6 +127,28 @@ export default function WeddingExperience() {
     return () => clearInterval(id);
   }, [slideshow, modal]);
 
+  useEffect(() => {
+    if (!w.music) return;
+    const startAudio = (e: Event) => {
+      if ((e.target as HTMLElement)?.closest?.(".music-control")) return;
+      const el = audio.current;
+      if (el && el.paused) {
+        el.volume = 0.4;
+        el.play()
+          .then(() => setPlaying(true))
+          .catch(() => {});
+      }
+      cleanup();
+    };
+    const cleanup = () => {
+      window.removeEventListener("click", startAudio);
+      window.removeEventListener("touchstart", startAudio);
+    };
+    window.addEventListener("click", startAudio, { once: true });
+    window.addEventListener("touchstart", startAudio, { once: true });
+    return cleanup;
+  }, []);
+
   function toggleLanguage() {
     const next = lang === "en" ? "ta" : "en";
     setLang(next);
@@ -138,11 +161,13 @@ export default function WeddingExperience() {
     if (!el) return;
     if (!el.paused) {
       el.pause();
+      setPlaying(false);
       return;
     }
     try {
-      el.volume = 0.3;
+      el.volume = 0.4;
       await el.play();
+      setPlaying(true);
       setAudioError(false);
     } catch {
       setAudioError(true);
@@ -169,9 +194,6 @@ export default function WeddingExperience() {
         <nav className={menu ? "nav open" : "nav"} aria-label="Main navigation">
           <a href="#celebration" onClick={() => setMenu(false)}>
             {t.celebration}
-          </a>
-          <a href="#moments" onClick={() => setMenu(false)}>
-            {t.moments}
           </a>
           <a
             className="nav-closing"
@@ -519,53 +541,6 @@ export default function WeddingExperience() {
           </div>
         </section>
 
-        <section id="moments" className="moments-section section-wrap">
-          <div className="gallery-heading reveal">
-            <div>
-              <p className="eyebrow">{t.gallery}</p>
-              <h2>{t.galleryTitle}</h2>
-            </div>
-            <p className="body">{t.galleryBody}</p>
-          </div>
-          {w.gallery.length ? (
-            <div className="photo-grid reveal">
-              {w.gallery.map((item, i) => (
-                <button
-                  className={`gallery-photo photo-${i % 4}`}
-                  key={item.src}
-                  onClick={() => {
-                    setPhoto(i);
-                    setModal("photo");
-                  }}
-                  aria-label={`${t.photo} ${i + 1}`}
-                >
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 760px) 90vw, 45vw"
-                    className="cover"
-                  />
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="gallery-placeholder reveal">
-              <div className="photo-stack" aria-hidden="true">
-                <div />
-                <div />
-                <div>
-                  <Heart size={30} strokeWidth={1} />
-                </div>
-              </div>
-              <div>
-                <h3>{t.galleryEmpty}</h3>
-                <p className="body">{t.galleryEmptyBody}</p>
-              </div>
-            </div>
-          )}
-        </section>
-
         <section id="our-day" className="day-story">
           <div className="section-wrap day-story-layout reveal">
             <div className="day-story-image">
@@ -708,9 +683,10 @@ export default function WeddingExperience() {
               onClick={toggleMusic}
               aria-label={playing ? t.mute : t.audio}
               aria-pressed={playing}
+              title={playing ? t.mute : t.audio}
               className={playing ? "music-button playing" : "music-button"}
             >
-              {playing ? <Music2 size={18} /> : <VolumeX size={18} />}
+              {playing ? <Volume2 size={20} /> : <VolumeX size={20} />}
             </button>
             {audioError && <span role="status">{t.audioError}</span>}
           </div>

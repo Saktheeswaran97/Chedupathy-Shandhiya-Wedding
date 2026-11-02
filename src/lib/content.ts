@@ -78,8 +78,7 @@ export const wedding = {
     },
   ],
   heroImage: asset("/photos/chedupathy-shandhiya.jpg"),
-  // No music is copied from the old client. Add a licensed track under public/audio if wanted.
-  music: "",
+  music: asset("/audio/background.mp3"),
   contactPhone: "+919841434030",
   contacts: [
     {
